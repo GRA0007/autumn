@@ -1,6 +1,7 @@
 body {
 	margin: 20px;
 	font-family: 'Roboto', sans-serif;
+	background-color: #FFF;
 
 	--background-color: #EDEDED;
 	--light-color: #FFF;
@@ -11,6 +12,8 @@ body {
 	color: var(--text-color, #000);
 }
 body.dark {
+	background-color: #000;
+
 	--background-color: #444;
 	--light-color: #666;
 	--shadow-color: #000;
@@ -48,6 +51,58 @@ nav #user_info {
 	font-size: 16px;
 	flex: 1;
 	text-align: right;
+	padding: 10px 30px 10px 0;
+	position: relative;
+	cursor: pointer;
+	user-select: none;
+}
+nav #user_info:after {
+	content: '';
+	height: 100%;
+	width: 30px;
+	right: 0;
+	top: 0;
+	display: block;
+	position: absolute;
+	background-image: url('menu.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	filter: var(--icon-filter);
+	transition: transform .2s;
+}
+nav #user_info.open:after {
+	transform: rotateX(180deg);
+}
+nav #user_info #menu {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	background-color: var(--light-color);
+	border-radius: 10px;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.4);
+	box-sizing: border-box;
+	padding: 10px 0;
+	z-index: 1000;
+	transform: translateY(-10px);
+	opacity: 0;
+	pointer-events: none;
+	transition: transform .15s, opacity .15s;
+}
+nav #user_info.open #menu {
+	transform: translateY(0);
+	opacity: 1;
+	pointer-events: all;
+}
+nav #user_info #menu a {
+	display: block;
+	text-decoration: none;
+	padding: 10px 20px;
+	color: inherit;
+	transition: background-color .15s;
+}
+nav #user_info #menu a:hover {
+	background-color: rgba(0,0,0,.1);
 }
 
 #board {
@@ -90,6 +145,7 @@ nav #user_info {
 	left: 0;
 	top: 0;
 	display: block;
+	position: absolute;
 	background-repeat: no-repeat;
 	background-size: 30px;
 	background-position: center;

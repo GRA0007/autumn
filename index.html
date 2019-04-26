@@ -11,14 +11,23 @@
 			<nav>
 				<h1>Autumn</h1>
 				<select id="project_selector">
-					<option value="project1" selected>Project 1</option>
-					<option value="project2">Project 2</option>
-					<option value="project3">Project 3</option>
-					<option value="project4">Project 4</option>
-					<option value="project5">Project 5</option>
-					<option value="project6">Project 6</option>
+					<option value="client1" disabled>Client 1</option>
+					<option value="project1" selected>&nbsp;&nbsp;&nbsp;&nbsp;Project 1&nbsp;&nbsp;&nbsp;&nbsp;</option>
+					<option value="project2">&nbsp;&nbsp;&nbsp;&nbsp;Project 2&nbsp;&nbsp;&nbsp;&nbsp;</option>
+					<option value="client2" disabled>Client 2</option>
+					<option value="project3">&nbsp;&nbsp;&nbsp;&nbsp;Project 3&nbsp;&nbsp;&nbsp;&nbsp;</option>
+					<option value="project4">&nbsp;&nbsp;&nbsp;&nbsp;Project 4&nbsp;&nbsp;&nbsp;&nbsp;</option>
+					<option value="project5">&nbsp;&nbsp;&nbsp;&nbsp;Project 5&nbsp;&nbsp;&nbsp;&nbsp;</option>
+					<option value="client3" disabled>Client 3</option>
+					<option value="project6">&nbsp;&nbsp;&nbsp;&nbsp;Project 6&nbsp;&nbsp;&nbsp;&nbsp;</option>
 				</select>
-				<span id="user_info">Hey Ben</span>
+				<span id="user_info" onclick="this.classList.toggle('open');">
+					<span>Hey Ben</span>
+					<div id="menu">
+						<a href="#" id="dark_toggle">Dark mode</a>
+						<a href="#" id="log_out">Log out</a>
+					</div>
+				</span>
 			</nav>
 			<div id="board">
 				<div class="task">
@@ -63,5 +72,6 @@
 				</div>
 			</div>
 		</main>
+		<script src="script.js"></script>
 	</body>
 </html>
