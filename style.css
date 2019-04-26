@@ -1,0 +1,106 @@
+body {
+	margin: 20px;
+	font-family: 'Roboto', sans-serif;
+
+	--background-color: #EDEDED;
+	--light-color: #FFF;
+	--shadow-color: rgba(0,0,0,.6);
+	--text-color: #000;
+	--icon-filter: invert(1);
+
+	color: var(--text-color, #000);
+}
+body.dark {
+	--background-color: #444;
+	--light-color: #666;
+	--shadow-color: #000;
+	--text-color: #FFF;
+	--icon-filter: none;
+}
+
+nav {
+	width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	padding: 20px 30px;
+	border-radius: 20px 20px 0 0;
+	background: var(--background-color);
+}
+nav h1 {
+	margin: 0;
+	font-size: 20px;
+	font-family: Helvetica, sans-serif;
+	flex: 1;
+	color: #E8A137;
+	padding: 10px 0 10px 40px;
+	background-image: url('logo.svg');
+	background-position: left center;
+	background-repeat: no-repeat;
+	background-size: 30px;
+}
+nav select {
+	font-size: 18px;
+}
+nav #user_info {
+	display: block;
+	white-space: nowrap;
+	font-size: 16px;
+	flex: 1;
+	text-align: right;
+}
+
+#board {
+	width: 100%;
+	box-sizing: border-box;
+	border-radius: 0 0 20px 20px;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px 30px;
+	background: var(--background-color);
+}
+
+.task {
+	height: 150px;
+	width: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+.task button {
+	height: 60px;
+	width: 60px;
+	border-radius: 1000px;
+	display: block;
+	border: 0;
+	background: var(--background-color);
+	cursor: pointer;
+	box-shadow: 0 1px 2px 1px var(--shadow-color), inset 0 1px 1px 0 var(--light-color);
+	position: relative;
+}
+.task button:focus {
+	box-shadow: inset 0 1px 2px 0 var(--shadow-color), 0 1px 1px 0 var(--light-color);
+	outline: none;
+}
+.task button:after {
+	content: '';
+	height: 100%;
+	width: 100%;
+	left: 0;
+	top: 0;
+	display: block;
+	background-repeat: no-repeat;
+	background-size: 30px;
+	background-position: center;
+	background-image: url('start.svg');
+	filter: var(--icon-filter);
+}
+.task button.active:after {
+	background-image: url('stop.svg');
+}
+.task label {
+	display: block;
+	text-align: center;
+	padding-top: 10px;
+}
