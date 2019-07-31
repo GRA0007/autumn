@@ -1,24 +1,58 @@
 body {
 	margin: 20px;
 	font-family: 'Roboto', sans-serif;
-	background-color: #FFF;
 
+	--base-color: #FFF;
 	--background-color: #EDEDED;
 	--light-color: #FFF;
 	--shadow-color: rgba(0,0,0,.6);
 	--text-color: #000;
 	--icon-filter: invert(1);
 
+	background-color: var(--base-color, #FFF);
 	color: var(--text-color, #000);
 }
 body.dark {
-	background-color: #000;
-
+	--base-color: #000;
 	--background-color: #444;
 	--light-color: #666;
 	--shadow-color: #000;
 	--text-color: #FFF;
 	--icon-filter: none;
+}
+
+#loader {
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,.5);
+	transition: opacity .2s, visibility .2s;
+	visibility: hidden;
+	opacity: 0;
+}
+#loader:after {
+	content: '';
+	position: absolute;
+	top: calc(50% - 25px);
+	left: calc(50% - 25px);
+	height: 50px;
+	width: 50px;
+	border: 17px dashed #FFF;
+	border-radius: 1000px;
+	animation-name: spin;
+	animation-duration: .5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+@keyframes spin {
+	from { transform: rotate(0deg); }
+	from { transform: rotate(360deg); }
+}
+.loading #loader {
+	opacity: 1;
+	visibility: visible;
 }
 
 nav {
@@ -42,14 +76,10 @@ nav h1 {
 	background-repeat: no-repeat;
 	background-size: 30px;
 }
-nav select {
-	font-size: 18px;
-}
 nav #user_info {
 	display: block;
 	white-space: nowrap;
 	font-size: 16px;
-	flex: 1;
 	text-align: right;
 	padding: 10px 30px 10px 0;
 	position: relative;
@@ -105,7 +135,7 @@ nav #user_info #menu a:hover {
 	background-color: rgba(0,0,0,.1);
 }
 
-#board {
+#pad {
 	width: 100%;
 	box-sizing: border-box;
 	border-radius: 0 0 20px 20px;
@@ -114,49 +144,82 @@ nav #user_info #menu a:hover {
 	padding: 20px 30px;
 	background: var(--background-color);
 }
+#textarea {
+	resize: none;
+	font: inherit;
+	width: 100%;
+	box-sizing: border-box;
+	border: 0;
+	border-radius: 10px;
+	background-color: var(--base-color);
+	color: var(--text-color);
+	padding: 20px 25px;
+	font-size: 18px;
+	min-height: 10em;
+}
+#textarea:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px #AAA;
+}
+#textarea:after {
+	content: attr(placeholder);
+	color: #AAA;
+}
 
-.task {
-	height: 150px;
-	width: 150px;
+#textarea .project {
+	background: #CCC;
+	border-radius: 3px;
+	padding: 1px 5px;
+	display: inline-block;
+	margin: 0 5px;
+}
+
+
+#autocomplete {
+	position: absolute;
+	background-color: var(--background-color);
+	border-radius: 5px;
+	box-shadow: 0 2px 7px 0 rgba(0,0,0,.3);
+	display: none;
+	padding-top: 20px;
+}
+#autocomplete:before {
+	content: attr(data-title);
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 20px;
+	font-size: .8em;
+	font-weight: bold;
+	color: var(--base-color);
+	background-color: var(--text-color);
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	flex-direction: column;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	box-sizing: border-box;
+	padding: 0 9px;
 }
-.task button {
-	height: 60px;
-	width: 60px;
-	border-radius: 1000px;
+#autocomplete.show {
 	display: block;
-	border: 0;
-	background: var(--background-color);
+}
+#autocomplete > span {
+	display: block;
+	padding: 5px 8px;
+	font-size: 18px;
 	cursor: pointer;
-	box-shadow: 0 1px 2px 1px var(--shadow-color), inset 0 1px 1px 0 var(--light-color);
-	position: relative;
 }
-.task button:focus {
-	box-shadow: inset 0 1px 2px 0 var(--shadow-color), 0 1px 1px 0 var(--light-color);
-	outline: none;
+#autocomplete > span.selected {
+	background-color: #AAA;
 }
-.task button:after {
-	content: '';
-	height: 100%;
-	width: 100%;
-	left: 0;
-	top: 0;
+#autocomplete > span:last-child {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+#autocomplete span span {
+	font-size: .7em;
 	display: block;
-	position: absolute;
-	background-repeat: no-repeat;
-	background-size: 30px;
-	background-position: center;
-	background-image: url('start.svg');
-	filter: var(--icon-filter);
-}
-.task button.active:after {
-	background-image: url('stop.svg');
-}
-.task label {
-	display: block;
-	text-align: center;
-	padding-top: 10px;
 }

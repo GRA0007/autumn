@@ -6,21 +6,10 @@
 
 		<link rel="stylesheet" href="style.css" />
 	</head>
-	<body>
+	<body class="loading">
 		<main>
 			<nav>
 				<h1>Autumn</h1>
-				<select id="project_selector">
-					<option value="client1" disabled>Client 1</option>
-					<option value="project1" selected>&nbsp;&nbsp;&nbsp;&nbsp;Project 1&nbsp;&nbsp;&nbsp;&nbsp;</option>
-					<option value="project2">&nbsp;&nbsp;&nbsp;&nbsp;Project 2&nbsp;&nbsp;&nbsp;&nbsp;</option>
-					<option value="client2" disabled>Client 2</option>
-					<option value="project3">&nbsp;&nbsp;&nbsp;&nbsp;Project 3&nbsp;&nbsp;&nbsp;&nbsp;</option>
-					<option value="project4">&nbsp;&nbsp;&nbsp;&nbsp;Project 4&nbsp;&nbsp;&nbsp;&nbsp;</option>
-					<option value="project5">&nbsp;&nbsp;&nbsp;&nbsp;Project 5&nbsp;&nbsp;&nbsp;&nbsp;</option>
-					<option value="client3" disabled>Client 3</option>
-					<option value="project6">&nbsp;&nbsp;&nbsp;&nbsp;Project 6&nbsp;&nbsp;&nbsp;&nbsp;</option>
-				</select>
 				<span id="user_info" onclick="this.classList.toggle('open');">
 					<span>Hey Ben</span>
 					<div id="menu">
@@ -29,49 +18,17 @@
 					</div>
 				</span>
 			</nav>
-			<div id="board">
-				<div class="task">
-					<button id="task1"></button>
-					<label for="task1">Task 1</label>
-				</div>
-				<div class="task">
-					<button id="task2"></button>
-					<label for="task2">Task 2</label>
-				</div>
-				<div class="task">
-					<button id="task3"></button>
-					<label for="task3">Task 3</label>
-				</div>
-				<div class="task">
-					<button id="task4"></button>
-					<label for="task4">Task 4</label>
-				</div>
-				<div class="task">
-					<button id="task5"></button>
-					<label for="task5">Task 5</label>
-				</div>
-				<div class="task">
-					<button id="task6"></button>
-					<label for="task6">Task 6</label>
-				</div>
-				<div class="task">
-					<button id="task7"></button>
-					<label for="task7">Task 7</label>
-				</div>
-				<div class="task">
-					<button id="task8"></button>
-					<label for="task8">Task 8</label>
-				</div>
-				<div class="task">
-					<button id="task9"></button>
-					<label for="task9">Task 9</label>
-				</div>
-				<div class="task">
-					<button id="task10"></button>
-					<label for="task10">Task 10</label>
-				</div>
+			<div id="pad">
+				<div id="textarea" placeholder="Start typing a project name..." contenteditable></div>
 			</div>
 		</main>
+		<div id="loader"></div>
+		<div id="autocomplete" data-title="Project">
+			<span class="selected">Some project</span>
+			<span>Another project name</span>
+			<span>Last project</span>
+		</div>
+		<script src="fuse.js"></script>
 		<script src="script.js"></script>
 	</body>
 </html>
